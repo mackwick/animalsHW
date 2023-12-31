@@ -3,6 +3,7 @@ require("dotenv").config()
 const express = require("express")
 const morgan = require("morgan")
 const methodOverride = require("method-override")
+const AnimalRouter = require("./controllers/animalroutes.js")
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.get("/", (req, res) => {
     res.send("Server is working.")
 })
 
+app.use("/animals", AnimalRouter)
 
 //SERVER LISTENER
 const PORT = process.env.PORT || 3000

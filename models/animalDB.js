@@ -1,4 +1,4 @@
-const mongoose = require(./connection.js)
+const mongoose = require("./connection.js")
 
 //Schema
 const animalSchema = new mongoose.Schema({
@@ -6,7 +6,7 @@ const animalSchema = new mongoose.Schema({
     extinct: Boolean,
     location: String,
     lifeExpectancy: Number
-} {
+}, {
     timestamps: true
 })
 
