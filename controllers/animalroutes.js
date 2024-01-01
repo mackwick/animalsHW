@@ -1,5 +1,6 @@
 const express = require("express")
 const Animal = require("../models/animalDB.js")
+const { resolveInclude } = require("ejs")
 
 
 //ROUTER
@@ -14,13 +15,13 @@ function errorHandler(error, res) {
 
 //seed route
 router.get("/seed", async (req, res) => {
-    await Animal.deleteMany({}) //reset and clear whole DB
+    await Animal.deleteMany({})((error) => errorHandler(error, res)) //reset and clear whole DB
     const animals = await Animal.create([
         {species: "Acromantula", extinct: false, location: "Borneo, Scotland", lifeExpectancy: 75},
         {species: "Ashwinder", extinct: false, location: "Worldwide", lifeExpectancy: 13},
         {species: "Augury", extinct: false, location: "Ireland", lifeExpectancy: 101},
         {species: "Basilisk", extinct: false, location: "Scotland", lifeExpectancy: 600}
-    ])
+    ]).catch((error) => errorHandler(error, res))
     res.json(animals)
 })
 
@@ -31,7 +32,9 @@ router.get("/", async (req, res) => {
 })
 
 //new route - GET (new form)
-
+router.get("/new", (req, res) => {
+    res.render("new.ejs")
+})
 
 //destroy route - DELETE (by id)
 
@@ -40,6 +43,11 @@ router.get("/", async (req, res) => {
 
 
 //create route - POST (creates using new form)
+router.post("/", async (req, res) => {
+    req.body.extinct = Boolean(req.body.extinct)
+    await Animal.create(req.body).catch((error) => errorHandler(error, res))
+    res.redirect("/animals")
+})
 
 
 //edit route - GET (edit form)
@@ -47,10 +55,9 @@ router.get("/", async (req, res) => {
 
 //show route - GET (by id)
 router.get("/:id", async (req, res) => {
-    const animal = await Animal.findById(req.params.id)
+    const animal = await Animal.findById(req.params.id).catch((error) => errorHandler(error, res))
     res.render("show.ejs", {animal})
 })
-
 
 //EXPORT ROUTER
 module.exports = router

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>Create a New Animal</h1>
+        <nav>
+            <a href="/animals">Go back</a>
+        </nav>
+    </header>
+    <form action="/animals" method="post">
+        <label for="species">Species: <input type="text" name="species"></label>
+        <label for="location">Location: <input type="text" name="location"></label>
+        <label for="lifeExpectancy">Life Expectancy: <input type="text" name="lifeExpectancy"></label>
+        <label for="extinct">Extinct: <input type="checkbox" name="extinct"></label>
+        <input type="submit" value="Add animal">
+    </form>
+</body>
+</html>
