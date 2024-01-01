@@ -18,7 +18,9 @@
         <h4>Extinct: <%= animal.extinct ? "Yes" : "No" %></h4>
     </div>
     <form action="/animals/<%= animal._id %>?_method=DELETE" method="post">
-        <input type="submit" value="Remove animal">
+        <input type="submit" value="Remove">
     </form>
+    <a href="/animals/<%= animal.id %>/edit"><button>Edit</button></a>
+    
 </body>
 </html>

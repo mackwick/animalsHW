@@ -43,7 +43,11 @@ router.delete("/:id", async (req, res) => {
 })
 
 //update route - PUT (updates using edit form)
-
+router.put("/:id", async (req, res) => {
+    req.body.extinct = Boolean(req.body.extinct)
+    await Animal.findByIdAndUpdate(req.params.id, req.body)
+    res.redirect("/animals/")
+})
 
 //create route - POST (creates using new form)
 router.post("/", async (req, res) => {
@@ -55,7 +59,10 @@ router.post("/", async (req, res) => {
 
 
 //edit route - GET (edit form)
-
+router.get("/:id/edit", async (req, res) => {
+    const animal = await Animal.findById(req.params.id).catch((error) => errorHandler(error, res))
+    res.render("edit.ejs", {animal})
+})
 
 //show route - GET (by id)
 router.get("/:id", async (req, res) => {
