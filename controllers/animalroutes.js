@@ -15,7 +15,7 @@ function errorHandler(error, res) {
 
 //seed route
 router.get("/seed", async (req, res) => {
-    await Animal.deleteMany({})((error) => errorHandler(error, res)) //reset and clear whole DB
+    await Animal.deleteMany({}).catch((error) => errorHandler(error, res)) //reset and clear whole DB
     const animals = await Animal.create([
         {species: "Acromantula", extinct: false, location: "Borneo, Scotland", lifeExpectancy: 75},
         {species: "Ashwinder", extinct: false, location: "Worldwide", lifeExpectancy: 13},
@@ -37,15 +37,19 @@ router.get("/new", (req, res) => {
 })
 
 //destroy route - DELETE (by id)
-
+router.delete("/:id", async (req, res) => {
+    await Animal.findByIdAndDelete(req.params.id).catch((error) => errorHandler(error, res))
+    res.redirect("/animals")
+})
 
 //update route - PUT (updates using edit form)
 
 
 //create route - POST (creates using new form)
 router.post("/", async (req, res) => {
+    if (req.body.species != "") {
     req.body.extinct = Boolean(req.body.extinct)
-    await Animal.create(req.body).catch((error) => errorHandler(error, res))
+    await Animal.create(req.body).catch((error) => errorHandler(error, res))}
     res.redirect("/animals")
 })
 
