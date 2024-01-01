@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animals</title>
+</head>
+<body>
+    <header>
+        <h1>Animals</h1>
+        <nav></nav>
+    </header>
+    <div id="animals-container">
+
+        <% animals.forEach(animal => { %>
+                <div id="one-animal">
+                    <a href="/animals/<%= animal._id %>">
+                        <h2><%= animal.species %></h2>  
+                    </a>   
+                    <h4>Location: <%= animal.location %></h4>
+                    <h4>Life Expectancy: <%= animal.lifeExpectancy %></h4>
+                    <h4>Extinct: <%= animal.extinct ? "Yes" : "No" %></h4>
+                </div>
+        <% }) %>
+
+    </div>
+</body>
+</html>
