@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include("../public/css.ejs") %>
     <title>Animals</title>
 </head>
 <body>
@@ -13,7 +14,6 @@
         </nav>
     </header>
     <div id="animals-container">
-
         <% animals.forEach(animal => { %>
                 <div id="one-animal">
                     <a href="/animals/<%= animal._id %>">
