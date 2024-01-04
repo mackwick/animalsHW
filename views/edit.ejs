@@ -1,24 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%- include("../public/css.ejs") %>
-    <title>Animals</title>
-</head>
-<body>
+    <title>Fantastic Beasts</title>
+  </head>
+  <body>
     <header>
-        <h1>Update <%= animal.species %></h1>
-        <nav>
-            <a href="/animals">Go back</a>
-        </nav>
+      <h1>Update <%= animal.species %></h1>
+      <nav>
+        <a href="/animals">Go back</a>
+      </nav>
     </header>
     <form action="/animals/<%= animal.id %>?_method=PUT" method="post">
-        <label for="species">Species: <input type="text" name="species" value="<%= animal.species %>"></label>
-        <label for="location">Location: <input type="text" name="location" value="<%= animal.location %>"></label>
-        <label for="lifeExpectancy">Life Expectancy: <input type="text" name="lifeExpectancy" value="<%= animal.lifeExpectancy%>"></label>
-        <label for="extinct">Extinct: <input type="checkbox" name="extinct" value="<%= animal.extinct ? "checked" : "" %>"></label>
-        <input type="submit" value="Update <%= animal.species %>">
+      <label for="species"
+        >Species:
+        <input type="text" name="species" value="<%= animal.species %>"
+      /></label>
+      <label for="location"
+        >Where to Find Them:
+        <input type="text" name="location" value="<%= animal.location %>"
+      /></label>
+      <label for="lifeExpectancy"
+        >Life Expectancy:
+        <input
+          type="text"
+          name="lifeExpectancy"
+          value="<%= animal.lifeExpectancy%>"
+      /></label>
+      <label for="extinct"
+        >Extinct: <input type="checkbox" name="extinct" value="<%=
+        animal.extinct ? "checked" : "" %>"></label
+      >
+      <input type="submit" value="Update <%= animal.species %>" />
     </form>
-</body>
+  </body>
 </html>

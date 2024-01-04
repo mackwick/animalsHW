@@ -1,19 +1,21 @@
-const mongoose = require("./connection.js")
+const mongoose = require("./connection.js");
 
 //Schema
-const animalSchema = new mongoose.Schema({
+const animalSchema = new mongoose.Schema(
+  {
     species: String,
     extinct: Boolean,
     location: String,
-    lifeExpectancy: Number
-}, {
-    timestamps: true
-})
+    lifeExpectancy: Number,
+  },
+  {
+    timestamps: true,
+  }
+);
 
-//Animal Model 
+//Animal Model
 //Singular model - a category of things; model function("Name of collection", what Schema to use to enforce model)
-const Animal = mongoose.model("Animal", animalSchema)
+const Animal = mongoose.model("Animal", animalSchema);
 
 //Export
-module.exports = Animal
-
+module.exports = Animal;

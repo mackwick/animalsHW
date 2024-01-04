@@ -1,27 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <%- include("../public/css.ejs") %>
-    <title>Animals</title>
-</head>
-<body>
+    <title>Fantastic Beasts</title>
+  </head>
+  <body>
     <header>
-        <h1><%= animal.species %></h1>
-        <nav>
-            <a href="/animals">Go back</a>
-        </nav>
+      <h1><%= animal.species %></h1>
+      <nav>
+        <a href="/animals">Go back</a>
+      </nav>
     </header>
-    <div id="show-container">
-        <h3>Location: <%= animal.location %></h3>
+    <fieldset>
+      <div id="show-container">
+        <h3>Where to Find Them: <%= animal.location %></h3>
         <h4>Life Expectancy: <%= animal.lifeExpectancy %></h4>
         <h4>Extinct: <%= animal.extinct ? "Yes" : "No" %></h4>
-    </div>
-    <form action="/animals/<%= animal._id %>?_method=DELETE" method="post">
-        <input type="submit" value="Remove">
-    </form>
-    <a href="/animals/<%= animal.id %>/edit"><button>Edit</button></a>
-    
-</body>
+      </div>
+
+      <div id="actions">
+        <form action="/animals/<%= animal._id %>?_method=DELETE" method="post">
+          <input type="submit" value="Remove" />
+        </form>
+        <a href="/animals/<%= animal.id %>/edit"><button>Edit</button></a>
+      </div>
+    </fieldset>
+  </body>
 </html>
