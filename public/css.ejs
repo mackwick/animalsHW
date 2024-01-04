@@ -68,12 +68,22 @@
 
   button,
   input[type="submit"] {
+    padding: 4px 16px;
     border: none;
     border-radius: 3px;
     background-color: #f0b905;
     color: #440e0d;
-    width: 8rem;
+    width: 12rem;
     height: 3rem;
+    cursor: pointer;
+    font-family: serif;
+    font-style: bold;
+    font-size: 18px;
+  }
+
+  #actions > input[type="submit"] {
+    margin-left: 0;
+    display: inline-block;
   }
 
   input[type="text"] {
@@ -82,6 +92,7 @@
     font-family: serif;
     font-style: bold;
     font-size: 18px;
+    align-items: center;
   }
 
   fieldset {

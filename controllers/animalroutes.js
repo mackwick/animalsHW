@@ -13,36 +13,36 @@ function errorHandler(error, res) {
 //ROUTES
 
 //seed route
-router.get("/seed", async (req, res) => {
-  await Animal.deleteMany({}).catch((error) => errorHandler(error, res)); //reset and clear whole DB
-  const animals = await Animal.create([
-    {
-      species: "Acromantula",
-      extinct: false,
-      location: "Borneo, Scotland",
-      lifeExpectancy: 75,
-    },
-    {
-      species: "Ashwinder",
-      extinct: false,
-      location: "Worldwide",
-      lifeExpectancy: 13,
-    },
-    {
-      species: "Augury",
-      extinct: false,
-      location: "Ireland",
-      lifeExpectancy: 101,
-    },
-    {
-      species: "Basilisk",
-      extinct: false,
-      location: "Scotland",
-      lifeExpectancy: 600,
-    },
-  ]).catch((error) => errorHandler(error, res));
-  res.json(animals);
-});
+// router.get("/seed", async (req, res) => {
+//   await Animal.deleteMany({}).catch((error) => errorHandler(error, res)); //reset and clear whole DB
+//   const animals = await Animal.create([
+//     {
+//       species: "Acromantula",
+//       extinct: false,
+//       location: "Borneo, Scotland",
+//       lifeExpectancy: 75,
+//     },
+//     {
+//       species: "Ashwinder",
+//       extinct: false,
+//       location: "Worldwide",
+//       lifeExpectancy: 13,
+//     },
+//     {
+//       species: "Augury",
+//       extinct: false,
+//       location: "Ireland",
+//       lifeExpectancy: 101,
+//     },
+//     {
+//       species: "Basilisk",
+//       extinct: false,
+//       location: "Scotland",
+//       lifeExpectancy: 600,
+//     },
+//   ]).catch((error) => errorHandler(error, res));
+//   res.json(animals);
+// });
 
 //index route - GET
 router.get("/", async (req, res) => {
@@ -67,9 +67,9 @@ router.delete("/:id", async (req, res) => {
 
 //update route - PUT (updates using edit form)
 router.put("/:id", async (req, res) => {
-  req.body.extinct = Boolean(req.body.extinct);
+  req.body.extinct = req.body.extinct === "on" ? true : false;
   await Animal.findByIdAndUpdate(req.params.id, req.body);
-  res.redirect("/animals/");
+  res.redirect("/animals");
 });
 
 //create route - POST (creates using new form)

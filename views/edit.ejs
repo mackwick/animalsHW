@@ -30,8 +30,8 @@
           value="<%= animal.lifeExpectancy%>"
       /></label>
       <label for="extinct"
-        >Extinct: <input type="checkbox" name="extinct" value="<%=
-        animal.extinct ? "checked" : "" %>"></label
+        >Extinct: <input type="checkbox" name="extinct" <%= animal.extinct ?
+        "checked" : "" %>></label
       >
       <input type="submit" value="Update <%= animal.species %>" />
     </form>
